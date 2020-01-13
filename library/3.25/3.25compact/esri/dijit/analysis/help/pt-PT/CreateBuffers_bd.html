@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <link rel="Stylesheet" href="../css/analysis.css" />
+    <script type="text/javascript">
+        function init() {
+            if (window.location.hash) {
+                var parentDiv, nodes, i, helpInfo, helpId, helpInfoArr, helpEnvFilter, envContent, hideEnvClass, hideNodes;
+                helpInfo = window.location.hash.substring(1);
+                    if(helpInfo.indexOf("-")) {
+                        helpInfoArr = helpInfo.split("-");
+                        helpId = helpInfoArr[0];
+                        helpEnvFilter = helpInfoArr[1];
+                    }
+                    else {
+                        helpId = helpInfo;
+                    }
+                parentDiv = document.getElementById("topics");
+                nodes = parentDiv.children;
+                    hideEnvClass = (helpEnvFilter === "OnlineOnly"? "PortalOnly": "OnlineOnly");
+                    if(document.getElementsByClassName) {
+                        hideNodes = document.getElementsByClassName(hideEnvClass);
+                    }
+                    else {
+                        hideNodes = document.querySelectorAll(hideEnvClass);
+                    }
+                for(i=0; i < nodes.length; i++) {
+                    if(nodes[i].id !== helpId) {
+                        nodes[i].style.display ="none";
+                    }
+                    }
+                    for(i=0; i < hideNodes.length; i++) {
+                        hideNodes[i].style.display ="none";
+                    }
+                }
+            }
+    </script>
+</head>
+<body onload="init()">
+<div id="topics">
+    <div id="toolDescription" class="regularsize">
+        <h2>Criar Buffers</h2><p/>
+        <h2><img src="../images/GUID-6E648C49-37F9-4673-82D5-DB646921A828-web.png" alt="Criar Buffers"></h2>
+        <hr/>
+    <p>Um buffer &eacute; uma &aacute;rea que abrange uma determinada dist&acirc;ncia de um elemento de ponto, linha ou &aacute;rea. 
+    </p>
+    <p>Os buffers s&atilde;o normalmente utilizados para criar &aacute;reas que podem ser sujeitas a an&aacute;lise adicional utilizando outras ferramentas. Por exemplo, se a pergunta &eacute; &quot;Que edif&iacute;cios se encontram a uma milha da escola?&quot;, a resposta pode ser encontrada atrav&eacute;s da cria&ccedil;&atilde;o de um buffer de 1 milha em redor da escola e sobrepondo o buffer com a camada que cont&eacute;m os limites dos edif&iacute;cios. O resultado final &eacute; uma camada com os edif&iacute;cios que se encontram a 1 milha da escola.
+    </p>
+    </div>
+    <!--Parameter divs for each param-->
+    <div id="inputLayer">
+        <div><h2>Selecionar uma camada à qual aplicar buffer</h2></div>
+        <hr/>
+        <div>
+            <p>O ponto, linha, ou elementos de &aacute;rea onde aplicar o buffer. As camadas de entrada t&ecirc;m de encontrar-se num sistema de coordenadas projetado que utilize os  <b>Ambientes de An&aacute;lise</b>.
+            </p>
+            <p>In addition to choosing a layer from your map, you can choose  <b>Browse Layers</b> at the bottom of the drop-down list to browse to your contents for a big data file share dataset or feature layer.
+            </p>
+        </div>
+    </div>
+    <div id="bufferType">
+        <div><h2>Selecionar o tipo de buffer a aplicar</h2></div>
+        <hr/>
+        <div>
+            <p>Existem tr&ecirc;s maneiras de especificar o tamanho do buffer para os seus elementos de entrada: 
+                <ul>
+                    <li>Especificar uma dist&acirc;ncia a aplicar a todos os elementos.
+                    </li>
+                    <li>Especificar um campo, na camada de entrada, que contenha o valor da dist&acirc;ncia. Pode utilizar um campo de string ou um campo num&eacute;rico. Caso n&atilde;o esteja definida uma unidade linear, ser&atilde;o utilizadas as unidades de refer&ecirc;ncia espacial. Caso esteja a utilizar um sistema de coordenadas geogr&aacute;ficas, assumir-se-&aacute; que o campo que n&atilde;o possui qualquer unidade seja representado em metros. 
+                    </li>
+                    <li>Construir uma express&atilde;o com v&aacute;rios campos e operadores matem&aacute;ticos. Por exemplo, para aplicar buffer em 10 vezes o valor de um campo denominado  <i>wind_speed</i> adicione a express&atilde;o <i>$feature[&quot;wind_speed&quot;] x 10</i>.
+                    </li>
+                </ul>
+                
+            </p>
+        </div>
+    </div>
+    <div id="method">
+        <div><h2>Selecionar o método de buffer</h2></div>
+        <hr/>
+        <div>
+            <p>Pode optar por utilizar um m&eacute;todo  <b>Planar</b> ou um m&eacute;todo <b>Geod&eacute;sico</b> . O m&eacute;todo <b>Planar</b> pode ser mais r&aacute;pido e &eacute; apropriado para an&aacute;lise local de dados projetados. O m&eacute;todo <b>Geod&eacute;sico</b> &eacute; apropriado para &aacute;reas de grande dimens&atilde;o e para qualquer sistema de coordenadas geogr&aacute;ficas.
+            </p>
+        </div>
+    </div>
+    <div id="dissolveOption">
+        <div><h2>Selecionar o tipo de método dissolver</h2></div>
+        <hr/>
+        <div>
+            <p>Op&ccedil;&otilde;es para especificar o m&eacute;todo dissolver.   Se for escolhido um m&eacute;todo dissolver, ser-lhe-&aacute; dada a op&ccedil;&atilde;o de criar &aacute;reas com v&aacute;rias partes ou &uacute;nicas, e poder&aacute; calcular estat&iacute;sticas com base nos campos fornecidos.
+                <ul>
+                    <li> <b>Todos</b>&mdash;Todos os elementos ser&atilde;o dissolvidos. Caso sejam permitidos elementos de v&aacute;rias partes, todos os elementos ser&atilde;o dissolvidos num &uacute;nico elemento. Caso n&atilde;o sejam permitidos elementos de v&aacute;rias partes, os elementos adjacentes ou sobrepostos ser&atilde;o dissolvidos.
+                    </li>
+                    <li> <b>Campos</b>&mdash;Elementos que partilham o mesmo campo especificado, ou a mesma combina&ccedil;&atilde;o de campos especificada, ser&atilde;o dissolvidos. Caso sejam permitidos elementos de v&aacute;rias partes, todos os elementos com o mesmo campo ser&atilde;o dissolvidos num &uacute;nico elemento. Caso n&atilde;o sejam permitidos elementos de v&aacute;rias partes, os elementos adjacentes ou sobrepostos com o mesmo valor de campo ser&atilde;o dissolvidos.
+                    </li>
+                    <li> <b>Nenhum</b>&mdash;n&atilde;o ser&atilde;o dissolvidos quaisquer elementos.  Isto &eacute; por omiss&atilde;o.
+                    </li>
+                </ul>
+                
+            </p>
+        </div>
+    </div>
+    <div id="multipart">
+        <div><h2>Permitir elementos de várias partes</h2></div>
+        <hr/>
+        <div>
+            <p>Op&ccedil;&atilde;o para especificar se o seu resultado consistir&aacute; em elementos &uacute;nicos ou de v&aacute;rias partes. 
+
+            </p>
+            <p>
+                <ul>
+                    <li>Marcada&mdash;Os resultados da sua an&aacute;lise ir&atilde;o conter elementos de v&aacute;rias partes.   
+                    </li>
+                    <li>N&atilde;o Marcada&mdash; Os resultados da sua an&aacute;lise ir&atilde;o conter elementos &uacute;nicos. Esta &eacute; a predefini&ccedil;&atilde;o.
+                    </li>
+                </ul>
+                
+            </p>
+        </div>
+    </div>
+    <div id="summaryFields">
+        <div><h2>Adicionar estatísticas (opcional)</h2></div>
+        <hr/>
+        <div>
+            <p> You can calculate statistics on features that are summarized. You can calculate the following on numeric fields:
+                <ul>
+                    <li>Count&mdash;Calculates the number of nonnull values. It can be used on numeric fields or strings. The count of [null, 0, 2] is 2.
+                    </li>
+                    <li>Sum&mdash;The sum of numeric values in a field. The sum of [null, null, 3] is 3.
+                    </li>
+                    <li>Mean&mdash;The mean of numeric values. The mean of [0, 2, null] is 1.
+                    </li>
+                    <li>Min&mdash;The minimum value of a numeric field. The minimum of [0, 2, null] is 0. 
+                    </li>
+                    <li>Max&mdash;The maximum value of a numeric field. The maximum value of [0, 2, null] is 2.
+                    </li>
+                    <li>Range&mdash;The range of a numeric field. This is calculated as the minimum values subtracted from the maximum value. The range of [0, null, 1] is 1. The range of [null, 4] is 0.
+                    </li>
+                    <li>Variance&mdash;The variance of a numeric field in a track. The  variance of [1] is null. The variance of [null, 1,0,1,1] is 0.25.
+                    </li>
+                    <li>Standard deviation&mdash;The standard deviation of a numeric field. The standard deviation of [1] is null. The standard deviation of [null, 1,0,1,1] is 0.5. 
+                    </li>
+                </ul>
+                
+            </p>
+            <p>You can calculate the following on string fields:
+                <ul>
+                    <li>Count&mdash;The number of nonnull strings.
+                    </li>
+                    <li>Any&mdash;This statistic is a random sample of a string value in the specified field.
+                    </li>
+                </ul>
+                All statistics are calculated on nonnull values. The resulting layer will contain a new field for each statistic calculated. Any number of statistics can be added by choosing an attribute and statistic. 
+            </p>
+        </div>
+    </div>
+    <div id="dataStore">
+        <div><h2>Selecionar um ArcGIS Data Store no qual guardar os resultados</h2></div>
+        <hr/>
+        <div>
+            <p>GeoAnalytics results are stored to an ArcGIS Data Store and exposed as a feature layer in   Portal for ArcGIS. In most cases, results should be stored to the spatiotemporal data store and this is the default. In some cases, saving results to the  relational data store is a good option. The following are reasons why you may want to store results to the relational data store: 
+                <ul>
+                    <li>You can use results in portal-to-portal collaboration.
+                    </li>
+                    <li>You can enable sync capabilities with your results.
+                    </li>
+                </ul>
+                
+            </p>
+            <p>You should not use the relational data store if you expect your GeoAnalytics results to increase and need to take advantage of the spatiotemporal big data store's capabilities to handle large amounts of data.
+            </p>
+        </div>
+    </div>
+    <div id="outputName">
+        <div><h2>Nome da camada resultante</h2></div>
+        <hr/>
+        <div>
+            <p> The name of the layer that will be created in <b>My
+Content</b> and added to the map. The default name is based on the
+tool name and the input layer name. If the layer already exists, the tool will fail.
+            </p>
+            <p>Using the  <b>Save result in</b> drop-down box, you can specify
+the name of a folder in <b>My Content</b> where the result will be
+saved.
+            </p>
+        </div>
+    </div>
+</div>
+</html>

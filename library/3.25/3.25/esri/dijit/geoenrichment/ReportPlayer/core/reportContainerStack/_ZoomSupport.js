@@ -1,0 +1,6 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/3.25/esri/copyright.txt for details.
+//>>built
+define("esri/dijit/geoenrichment/ReportPlayer/core/reportContainerStack/_ZoomSupport",["dojo/_base/declare","dojo/dom-style","../reportContainerGrid/utils/ZoomUtil"],function(d,b,c){return d(null,{getZoomInfo:function(){return c.getZoomInfo(this)},setZoomInfo:function(a,b){c.setZoomInfo(this,a,b)},zoomIn:function(a){c.zoomIn(this,a)},zoomOut:function(a){c.zoomOut(this,a)},zoomToFitPageWidth:function(a){c.zoomToFitPageWidth(this,a)},setZoomPercent:function(a,b){c.setZoomPercent(this,a,b)},setBestZoom:function(){c.setBestZoom(this)},
+resetZoom:function(){c.reset(this)},_syncFillerContainer:function(){if(this.domNode){var a=this.getZoomInfo().scale;b.set(this.fillerContainer,"marginTop","");b.set(this.fillerContainer,{width:b.get(this.scalableContainer,"width")*a+"px",height:b.get(this.scalableContainer,"height")*a+"px"});this.renderOptions&&this.renderOptions.center&&(a=(b.get(this.domNode,"height")-b.get(this.fillerContainer,"height"))/2,b.set(this.fillerContainer,"marginTop",Math.max(this.renderOptions.minTop||0,a)+"px"));this.onViewSyncronized()}},
+onViewSyncronized:function(){},onZoomChanged:function(){}})});

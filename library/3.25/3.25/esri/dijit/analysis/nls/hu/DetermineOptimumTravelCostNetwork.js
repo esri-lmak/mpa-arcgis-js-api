@@ -1,0 +1,5 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/3.25/esri/copyright.txt for details.
+//>>built
+define("esri/dijit/analysis/nls/hu/DetermineOptimumTravelCostNetwork",{inputLayerLabel:"\u00c5_Choose raster or feature location layer to determine travel paths between_______________________\u00f6",inputCostRasterLabel:"\u00c5_Choose travel cost raster layer__________\u00f6",outputOptimumNetworkName:"\u00c5_Result distance layer name_________\u00f6",outputNeighborNetworkName:"\u00c5_Result direction layer name (optional)____________\u00f6",outputLayerName:"\u00c5_Determine optimum travel cost of ${layername}_______________\u00f6",
+itemDescription:"\u00c5_Feature layer generated from running the Determine optimum travel cost network on ${layerName}______________________________\u00f6. ",itemTags:"\u00c5_Analysis Result, Determine Optimum Travel Cost Network, ${layername} ${fieldname}_________________________\u00f6",itemSnippet:"\u00c5_Feature layer generated from Determine Optimum Travel Cost Network_____________________\u00f6."});

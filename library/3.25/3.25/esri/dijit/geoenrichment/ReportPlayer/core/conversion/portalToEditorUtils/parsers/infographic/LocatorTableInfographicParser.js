@@ -1,0 +1,5 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/3.25/esri/copyright.txt for details.
+//>>built
+define("esri/dijit/geoenrichment/ReportPlayer/core/conversion/portalToEditorUtils/parsers/infographic/LocatorTableInfographicParser",["../../../ConversionUtil"],function(c){return{portalToEditor:function(a,b){return{type:a.attributes.type,scaleToFitHeight:a.attributes.scaleToFitHeight,showNumberOfLocations:a.attributes.showNumberOfLocations,calculatorName:a.tags[0].attributes.query,style:{width:c.ptToPx(a.attributes.width),height:c.ptToPx(a.attributes.height)},headerSectionJson:b.parsers.getParser("section").parseSection(a.tags[0],
+b),dataSectionJson:b.parsers.getParser("section").parseSection(a.tags[1],b),locatorCalculatorInfo:b.templateJson.metadata.locatorCalculatorsHash[a.tags[1].attributes.query]}}}});

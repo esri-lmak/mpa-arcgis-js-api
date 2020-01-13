@@ -1,0 +1,5 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/3.25/esri/copyright.txt for details.
+//>>built
+define("esri/dijit/geoenrichment/ReportPlayer/core/supportClasses/map/Popup",["dojo/_base/declare","esri/dijit/Popup"],function(c,d){return c(d,{visibleWhenEmpty:!1,popupLayerId:"popupLayer",enableHighlight:function(a){this.inherited(arguments);this._forceMoveGraphic(a)},updateHighlight:function(a,b){this.inherited(arguments);this._forceMoveGraphic(a)},disableHighlight:function(a){this._highlighted&&this._highlighted.getLayer()&&this._highlighted.getLayer().remove(this._highlighted);this.inherited(arguments)},
+_forceMoveGraphic:function(a){if(this._highlighted){var b=a.getLayer(this.popupLayerId);b&&(a.graphics.remove(this._highlighted),b.add(this._highlighted))}}})});

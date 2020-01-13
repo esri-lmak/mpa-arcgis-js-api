@@ -1,0 +1,5 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/3.25/esri/copyright.txt for details.
+//>>built
+define("esri/dijit/geoenrichment/ReportPlayer/core/sections/dynamicSettings/_ChartSettingsBuilder",["esri/dijit/geoenrichment/ReportPlayer/core/charts/utils/ChartTypes","esri/dijit/geoenrichment/ReportPlayer/core/charts/utils/ChartSorting","dojo/i18n!esri/nls/jsapi"],function(e,c,a){a=a.geoenrichment.dijit.ReportPlayer.SectionDynamicSettingsBuilder;var f={provideChartSettings:function(b){var d=b.getChartJson();if(!d||d.type===e.GAUGE)return null;var a=d&&!!d.seriesItems.length;b=b.calculationStatesGroup;
+var c=f._provideOptionsForSorting(d);return a||c||b?{canViewTable:a,group:b,sortingOptions:c,sorting:d.visualProperties.sorting}:null},_provideOptionsForSorting:function(b){return 1===b.seriesItems.length&&e.isSortingEnabled(b.type)?[{label:a.noSorting,imageClass:"",value:c.NONE},{label:a.sortAscending,imageClass:"upButton",value:c.ASC},{label:a.sortDescending,imageClass:"downButton",value:c.DESC}]:null}};return f});

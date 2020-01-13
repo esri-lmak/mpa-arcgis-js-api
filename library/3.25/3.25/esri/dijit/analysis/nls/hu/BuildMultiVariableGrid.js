@@ -1,0 +1,5 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/3.25/esri/copyright.txt for details.
+//>>built
+define("esri/dijit/analysis/nls/hu/BuildMultiVariableGrid",{binsLabel:"\u00c5_Choose the type of bins that will be used to build the multi-variable grid_______________________\u00f6",layersAttrLabel:"\u00c5_Choose input layers and variables that you would like to include in the grid________________________\u00f6",itemDescription:"\u00c5_Feature layer generated from running the Build Multi-Variable Grid_____________________\u00f6.",itemTags:"\u00c5_Analysis Result, Build Multi-Variable Grid______________\u00f6",
+itemSnippet:"\u00c5_Feature layer generated from Build Multi-Variable Grid_________________\u00f6",addVariables:"\u00c5_Add Variables_____\u00f6"});

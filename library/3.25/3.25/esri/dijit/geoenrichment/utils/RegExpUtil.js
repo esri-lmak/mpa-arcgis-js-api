@@ -1,0 +1,5 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/3.25/esri/copyright.txt for details.
+//>>built
+define("esri/dijit/geoenrichment/utils/RegExpUtil",[],function(){var b={createRegExp:function(a,c,d){a=b.trimText(a);return!a&&d?null:new RegExp(a,c)},trimText:function(a){return a?a.replace(/([\.$?*|{}\(\)\[\]\\\/\+\-^])/g,"").trim():""},replace:function(a,b,d){return null==a?"":(""+a).replace(b,function(a){return d[a]||""})}},e=/&|<|>/g,f=/&|<|>|"|'/g,g={"\x26":"\x26amp;","\x3c":"\x26lt;","\x3e":"\x26gt;",'"':"\x26quot;","'":"\x26apos;"};b.encodeXML=function(a,c){return b.replace(a,c?f:e,g)};var h=
+/&amp;|&lt;|&gt;|&quot;|&apos;/g,k={"\x26amp;":"\x26","\x26lt;":"\x3c","\x26gt;":"\x3e","\x26quot;":'"',"\x26apos;":"'"};b.decodeXML=function(a){return b.replace(a,h,k)};return b});

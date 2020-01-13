@@ -1,0 +1,5 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/3.25/esri/copyright.txt for details.
+//>>built
+define("esri/dijit/geoenrichment/ReportPlayer/core/supportClasses/map/layers/MapContentBuilder",["esri/layers/GraphicsLayer","./LocatorPointsBuilder","./LayerInfoTemplateProvider","./AreaFeatureLayersBuilder","./LayersSorter"],function(e,f,k,g,h){return{addLayersToMap:function(c,a){var b=new h(c),d=new e;d.id="popupLayer";c.addLayer(d);g.addAreaFeatures({areaName:a.areaName,features:a.features},b);f.addLocatorPoints({features:a.features,locatorPointsControllers:a.locatorPointsControllers,fieldData:a.fieldData,
+geClient:a.geClient,countryID:a.countryID,calculatorFieldName:a.calculatorFieldName,map:c},b);b.addFromAdditionalLayerInfos(a.additionalLayerInfos);b.sortLayers()}}});

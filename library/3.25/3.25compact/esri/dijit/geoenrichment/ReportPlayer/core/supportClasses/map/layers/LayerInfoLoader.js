@@ -1,0 +1,4 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/3.25/esri/copyright.txt for details.
+//>>built
+define("esri/dijit/geoenrichment/ReportPlayer/core/supportClasses/map/layers/LayerInfoLoader",["esri/dijit/geoenrichment/utils/requests/UniversalClient"],function(c){return{_cache:{},getInfo:function(b){this._cache[b]||(this._cache[b]=(new c({useCommonAuth:!0})).send({url:b}).then(function(a){return{url:b,name:a.name,rendererJson:a.drawingInfo&&a.drawingInfo.renderer,geometryType:a.geometryType}}).otherwise(function(a){console.log(a);return null}));return this._cache[b]}}});

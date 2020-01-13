@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <link rel="Stylesheet" href="../css/analysis.css" />
+    <script type="text/javascript">
+        function init() {
+            if (window.location.hash) {
+                var parentDiv, nodes, i, helpInfo, helpId, helpInfoArr, helpEnvFilter, envContent, hideEnvClass, hideNodes;
+                helpInfo = window.location.hash.substring(1);
+                    if(helpInfo.indexOf("-")) {
+                        helpInfoArr = helpInfo.split("-");
+                        helpId = helpInfoArr[0];
+                        helpEnvFilter = helpInfoArr[1];
+                    }
+                    else {
+                        helpId = helpInfo;
+                    }
+                parentDiv = document.getElementById("topics");
+                nodes = parentDiv.children;
+                    hideEnvClass = (helpEnvFilter === "OnlineOnly"? "PortalOnly": "OnlineOnly");
+                    if(document.getElementsByClassName) {
+                        hideNodes = document.getElementsByClassName(hideEnvClass);
+                    }
+                    else {
+                        hideNodes = document.querySelectorAll(hideEnvClass);
+                    }
+                for(i=0; i < nodes.length; i++) {
+                    if(nodes[i].id !== helpId) {
+                        nodes[i].style.display ="none";
+                    }
+                    }
+                    for(i=0; i < hideNodes.length; i++) {
+                        hideNodes[i].style.display ="none";
+                    }
+                }
+            }
+    </script>
+</head>
+<body onload="init()">
+<div id="topics">
+    <div id="toolDescription" class="largesize">
+        <h2>Agregar Pontos</h2><p/>
+        <h2><img src="../images/GUID-6C1620D9-D176-41FA-8283-833D8B1CCCFC-web.png" alt="Agregar Pontos"></h2>
+        <hr/>
+    <p>Esta ferramenta funciona com uma camada de elementos de pontos e uma camada de elementos de &aacute;reas.  Os elementos de &aacute;rea e entrada podem provir de uma camada de pol&iacute;gonos, ou podem ser caixas quadradas ou hexagonais calculadas aquando da execu&ccedil;&atilde;o da ferramenta. A primeira ferramenta identifica os pontos que se encontram dentro de cada &aacute;rea especificada. Depois de determinar esses, calcula estat&iacute;sticas sobre todos os pontos da &aacute;rea e atribu&iacute;dos &agrave; &aacute;rea. A estat&iacute;stica mais b&aacute;sica &eacute; a contagem do n&uacute;mero de pontos dentro da &aacute;rea, mas tamb&eacute;m pode obter outras estat&iacute;sticas. 
+
+    </p>
+    <p>Por exemplo, suponha que tem elementos de pontos com localiza&ccedil;&atilde;o de lojas de caf&eacute; e elementos de &aacute;rea de condados, e pretende resumir as vendas efetuadas pelos caf&eacute;s por munic&iacute;pio. Assumindo que os caf&eacute;s t&ecirc;m o atributo  <i>TOTAL_SALES</i> (total de vendas), pode obter a soma de todos os <i>TOTAL_SALES</i> em cada condado, o m&iacute;nimo ou m&aacute;ximo de <i>TOTAL_SALES</i>
+ em cada condado, ou outras estat&iacute;sticas, tais como a contagem, intervalo, desvio padr&atilde;o e vari&acirc;ncia.
+    </p>
+    <p>Esta ferramenta pode tamb&eacute;m funcionar com dados com componente temporal ativa. Se a componente temporal se encontrar ativa nos pontos de entrada, as op&ccedil;&otilde;es de divis&atilde;o temporal estar&atilde;o dispon&iacute;veis. A divis&atilde;o temporal permite-lhe calcular a rela&ccedil;&atilde;o de pontos na &aacute;rea, enquanto observa uma parcela temporal espec&iacute;fica. Por exemplo, pode observar intervalos de uma hora, o que resultaria em sa&iacute;das por cada hora. 
+    </p>
+    <p>Vejamos exemplo com componente temporal ativa: suponha que tem elementos de pontos por cada transa&ccedil;&atilde;o efetuada em v&aacute;rias localiza&ccedil;&otilde;es de caf&eacute;s e n&atilde;o existe qualquer camada de &aacute;rea.  Os dados foram reordenados pela dura&ccedil;&atilde;o de um ano e cada transa&ccedil;&atilde;o tem uma localiza&ccedil;&atilde;o e um indica&ccedil;&atilde;o temporal.   Assumindo que cada transa&ccedil;&atilde;o tem um atributo <i>TOTAL_SALES</i> , pode obter a soma de todos os <i>TOTAL_SALES</i> no espa&ccedil;o e tempo que lhe sejam conveniente. Caso estas transa&ccedil;&otilde;es sejam de uma &uacute;nica cidade, poder&iacute;amos gerar &aacute;reas em forma de grelhas de 1 quil&oacute;metro e observar parcelas temporais semanais para resumir as transa&ccedil;&otilde;es tanto no espa&ccedil;o como no tempo.
+    </p>
+    </div>
+    <!--Parameter divs for each param-->
+    <div id="pointLayer">
+        <div><h2>Selecione uma camada que contenha pontos para agregar em áreas.</h2></div>
+        <hr/>
+        <div>
+            <p>A camada de pontos que ser&aacute; agregada nas &aacute;reas. As camadas de pontos que s&atilde;o agregadas em caixas  <b>Quadrado </b> ou <b>Hex&aacute;gono</b> t&ecirc;m de ter a refer&ecirc;ncia espacial de processamento definida para um sistema de coordenadas projetado que utilize os <b>Ambientes de An&aacute;lise</b>.
+            </p>
+            <p>In addition to choosing a layer from your map, you can choose  <b>Browse Layers</b> at the bottom of the drop-down list to browse to your contents for a big data file share dataset or feature layer.
+            </p>
+        </div>
+    </div>
+    <div id="inputAggregation">
+        <div><h2>Escolher uma camada de área na qual agregar</h2></div>
+        <hr/>
+        <div>
+            <p>As &aacute;reas nas quais a camada de pontos ser&aacute; agregada. Pode escolher entre uma camada de &aacute;rea introduzida por si ou por caixas que s&atilde;o geradas enquanto a ferramenta &eacute; executada.   Ao gerar caixas, por  <b>Quadrado</b>, o n&uacute;mero e unidades especificados determinam a altura e o comprimento do quadrado. Para <b>Hex&aacute;gono</b>, o n&uacute;mero e unidades especificados determinam a dist&acirc;ncia entre lados paralelos.
+            </p>
+            <p>Analysis using  <b>Square</b> or <b>Hexagon</b> bins requires a projected coordinate system. You can set the <b>Processing coordinate system</b> in <b>Analysis Environments</b>. If your processing coordinate system is not set to a projected coordinate system, you will be prompted to set it when you <b>Run Analysis</b> .
+            </p>
+        </div>
+    </div>
+    <div id="polygonLayer">
+        <div><h2>Selecionar a camada de àrea na qual agregar</h2></div>
+        <hr/>
+        <div>
+            <p>A camada de &aacute;rea &agrave; qual os pontos ser&atilde;o agregados. Quaisquer pontos que se encontrem dentro dos limites das &aacute;reas inclu&iacute;das nesta camada ser&atilde;o contados e, opcionalmente, resumidos, utilizando as op&ccedil;&otilde;es de estat&iacute;sticas escolhidas por si. 
+            </p>
+            <p>Either  <b>Bin Size</b> for bins or <b>Area Layer</b> must be set.
+            </p>
+        </div>
+    </div>
+    <div id="inputBins">
+        <div><h2>Selecionar uma distância para gerar caixas e agregar</h2></div>
+        <hr/>
+        <div>
+            <p>A dist&acirc;ncia utilizada para gerar caixas nas quais agregar os seus pontos de entrada. Para uma caixa quadrada, o tamanho representa a altura do quadrado. Para hex&aacute;gono, o tamanho representa a altura do hex&aacute;gono (a partir de lados paralelos).  
+            </p>
+            <p>Either  <b>Bin Size</b> for bins or <b>Area Layer</b> must be set.
+            </p>
+        </div>
+    </div>
+    <div id="timeSlicing">
+        <div><h2>Agregar utilizando etapas temporais (opcional)</h2></div>
+        <hr/>
+        <div>
+            <p>If time is enabled on the input point layer and it is of type instant, you can  analyze using time stepping.  There are three parameters you can set when you use time:
+                <ul>
+                    <li> <b>Time step interval</b>
+                    </li>
+                    <li> <b>How often to repeat the time step</b>
+                    </li>
+                    <li> <b>Time to align the time steps to</b>
+                    </li>
+                </ul>
+                
+            </p>
+            <p>For example, if you have data that represents a year in time and you want to analyze it using weekly steps, set  <b>Time step interval</b> to <code>1 week</code>. 
+            </p>
+            <p>For example, if you have data that represents a year in time and you want to analyze it using the first week of the month, set  <b>Time step interval</b> to <code>1 week</code>, <b>How often to repeat the time step</b> to <code>1 month</code>, and <b>Time to align the time steps to</b> to <code>January 1, at 12:00 am</code>.
+            </p>
+        </div>
+    </div>
+    <div id="timeInterval">
+        <div><h2>Intervalo entre etapas temporais</h2></div>
+        <hr/>
+        <div>
+            <p>The interval of time used for generating time steps.  <b>Time step interval</b> can be used alone or with the <b>How often to repeat the time step</b> or <b>Time to align the time steps to</b> parameter.
+            </p>
+            <p>For example, if you want to create time steps that take place every Monday from 9:00 a.m. until 10:00 a.m., set  <b>Time step interval</b> to <code>1 hour</code>, <b>How often to repeat the time step</b> to <code>1 week</code>, and <b>Time to align the time steps to</b> to <code>9:00:00 a.m. on a Monday</code>.
+            </p>
+        </div>
+    </div>
+    <div id="timeStep">
+        <div><h2>Frequência de repetição da etapa temporal</h2></div>
+        <hr/>
+        <div>
+            <p> The step used for calculating a time step. <b>How often to repeat the time step</b> can be used alone, with <b>Time step interval</b>, with <b>Reference Time</b>, or with both <b>Time step interval</b> and <b>Time to align the time steps to</b>.
+            </p>
+            <p> For example, if you want to create time steps that take place every Monday from 9:00 a.m. until 10:00 a.m., set <b>Time step interval</b> to <code>1 hour</code>, <b>How often to repeat the time step</b> to <code>1 week</code>, and <b>Time to align the time steps to</b> to <code>9:00:00 a.m. on a Monday</code>.
+            </p>
+        </div>
+    </div>
+    <div id="timeReference">
+        <div><h2>Hora à qual alinhar as etapas temporais</h2></div>
+        <hr/>
+        <div>
+            <p>The date and time used to align time slicing. Time stepping will start at and continue backward from this time. If no reference time is selected, time stepping will align to January 1st, 1970. 
+            </p>
+            <p> For example, if you want to create time steps that take place every Monday from 9:00 a.m. until 10:00 a.m., set <b>Time step interval</b> to <code>1 hour</code>, <b>How often to repeat the time step</b> to <code>1 week</code>, and <b>Time to align the time steps to</b> to <code>9:00:00 a.m. on a Monday</code>.
+            </p>
+        </div>
+    </div>
+    <div id="summaryFields">
+        <div><h2>Adicionar estatísticas (opcional)</h2></div>
+        <hr/>
+        <div>
+            <p> You can calculate statistics on features that are summarized. You can calculate the following on numeric fields:
+                <ul>
+                    <li>Count&mdash;Calculates the number of nonnull values. It can be used on numeric fields or strings. The count of [null, 0, 2] is 2.
+                    </li>
+                    <li>Sum&mdash;The sum of numeric values in a field. The sum of [null, null, 3] is 3.
+                    </li>
+                    <li>Mean&mdash;The mean of numeric values. The mean of [0, 2, null] is 1.
+                    </li>
+                    <li>Min&mdash;The minimum value of a numeric field. The minimum of [0, 2, null] is 0. 
+                    </li>
+                    <li>Max&mdash;The maximum value of a numeric field. The maximum value of [0, 2, null] is 2.
+                    </li>
+                    <li>Range&mdash;The range of a numeric field. This is calculated as the minimum values subtracted from the maximum value. The range of [0, null, 1] is 1. The range of [null, 4] is 0.
+                    </li>
+                    <li>Variance&mdash;The variance of a numeric field in a track. The  variance of [1] is null. The variance of [null, 1,0,1,1] is 0.25.
+                    </li>
+                    <li>Standard deviation&mdash;The standard deviation of a numeric field. The standard deviation of [1] is null. The standard deviation of [null, 1,0,1,1] is 0.5. 
+                    </li>
+                </ul>
+                
+            </p>
+            <p>You can calculate the following on string fields:
+                <ul>
+                    <li>Count&mdash;The number of nonnull strings.
+                    </li>
+                    <li>Any&mdash;This statistic is a random sample of a string value in the specified field.
+                    </li>
+                </ul>
+                All statistics are calculated on nonnull values. The resulting layer will contain a new field for each statistic calculated. Any number of statistics can be added by choosing an attribute and statistic. 
+            </p>
+        </div>
+    </div>
+    <div id="spatialReference">
+        <div><h2>SpatialReference (wkid)</h2></div>
+        <hr/>
+        <div>
+            <p>This is a temporary parameter for prerelease  to set the processing spatial reference. Many big data tools require that a projected coordinate system is used as the spatial reference for processing. By default, the tool will use the input coordinate system but will fail if it's a geographic coordinate system. To set a projected coordinate system, enter the WKID. For example,  <b>Web Mercator</b> would be entered as <code>3857</code>.
+            </p>
+        </div>
+    </div>
+    <div id="dataStore">
+        <div><h2>Selecionar um ArcGIS Data Store no qual guardar os resultados</h2></div>
+        <hr/>
+        <div>
+            <p>GeoAnalytics results are stored to an ArcGIS Data Store and exposed as a feature layer in   Portal for ArcGIS. In most cases, results should be stored to the spatiotemporal data store and this is the default. In some cases, saving results to the  relational data store is a good option. The following are reasons why you may want to store results to the relational data store: 
+                <ul>
+                    <li>You can use results in portal-to-portal collaboration.
+                    </li>
+                    <li>You can enable sync capabilities with your results.
+                    </li>
+                </ul>
+                
+            </p>
+            <p>You should not use the relational data store if you expect your GeoAnalytics results to increase and need to take advantage of the spatiotemporal big data store's capabilities to handle large amounts of data.
+            </p>
+        </div>
+    </div>
+    <div id="outputName">
+        <div><h2>Nome da camada resultante</h2></div>
+        <hr/>
+        <div>
+            <p> The name of the layer that will be created in <b>My
+Content</b> and added to the map. The default name is based on the
+tool name and the input layer name. If the layer already exists, the tool will fail.
+            </p>
+            <p>Using the  <b>Save result in</b> drop-down box, you can specify
+the name of a folder in <b>My Content</b> where the result will be
+saved.
+            </p>
+        </div>
+    </div>
+</div>
+</html>

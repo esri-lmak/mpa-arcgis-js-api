@@ -1,0 +1,6 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/3.25/esri/copyright.txt for details.
+//>>built
+define("esri/dijit/geoenrichment/ReportPlayer/core/conversion/portalToEditorUtils/metadata/map/MapCalculatorsParser",["esri/dijit/geoenrichment/utils/JsonXmlConverter","./MetadataToRendererParser"],function(f,k){return{parseMapCalculators:function(l,g){f.queryJson(l,"Maps").forEach(function(h){f.queryJson(h,"Map").forEach(function(e){var c=f.queryJson(e,/^(|Layer|LocatorResultsLayer)$/),b=c.filter(function(a){return!!a.attributes.PortalItemId}),c=c.filter(function(a){return!!a.attributes.ServiceUrl||
+"LocatorResultsLayer"===a.name}),d;1<b.length&&(d=b.shift());b=b.shift();d={fieldName:e.attributes.Name,defaultBasemapId:d&&d.attributes.PortalItemId,webMapId:b&&b.attributes.PortalItemId,additionalLayerInfos:c.length?c.map(function(a){if(a.attributes.ServiceUrl)return{url:a.attributes.ServiceUrl};var b=a.tags&&a.tags.filter(function(a){return"Renderer"===a.name})[0];return{isLocatorLayer:!0,calculatorName:a.attributes.CalculatorName,calculatorInfo:g.metadata.locatorCalculatorsHash[a.attributes.CalculatorName],
+rendererJson:b&&k.parseRendererJson(b)}}):null,mapScale:Number(e.attributes.Scale)||null};g&&(g.metadata.mapImageInfosHash[h.attributes.Name+"."+e.attributes.Name]=d)})})}}});

@@ -1,0 +1,4 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/3.25/esri/copyright.txt for details.
+//>>built
+define("esri/dijit/geoenrichment/ReportPlayer/core/sections/dynamicSettings/_LocatorSettingsBuilder",["dojo/when","../../infographics/InfographicTypes"],function(c,d){return{provideLocatorSettings:function(a){a=a.getInfographic();if(!a||a.getType()!==d.LOCATOR_TABLE)return null;var b=a.getInnerInfographic();return c(b.getStatRanges(),function(a){return a&&a.length||b.getNumPointsTotal()?{statRanges:a,canExportToExcel:b.canExportToExcel(),locatorTableInfographic:b}:null})}}});

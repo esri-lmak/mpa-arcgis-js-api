@@ -1,0 +1,5 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/3.25/esri/copyright.txt for details.
+//>>built
+define("esri/dijit/geoenrichment/ReportPlayer/core/conversion/portalToEditorUtils/parsers/SectionParser",["../../ConversionUtil","./ImageParser","./TableParser"],function(g,h,f){var e={},k={getElement:function(c,b){b=g.parseStyleString(c.attributes.style);return{id:"hr",style:{height:g.ptToPx(c.attributes.height),backgroundColor:b.backgroundColor}}}};e.parseSection=function(c,b){var d={type:c.attributes.type,stack:[]};d.type||console.log(Error("Section type is not supported!"));c.tags&&c.tags.forEach(function(a){a.attributes=
+a.attributes||{};"img"===a.name||"mapImage"===a.name?d.stack.push(h.getElement(a,b)):"hr"===a.name?d.stack.push(k.getElement(a,b)):"pageBreak"===a.name?d.stack.push({id:"pageBreak"}):"table"===a.name&&(a=f.getElement(a,b),b.postProcessTableInSection&&b.postProcessTableInSection(c,a),d.stack.push(a))});return d};e.parseTable=function(c,b){return f.getElement(c,b)};e.parseTableCellAttributes=f.parseTableCellAttributes;return e});

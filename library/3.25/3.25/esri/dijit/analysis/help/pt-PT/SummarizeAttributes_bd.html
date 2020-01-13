@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <link rel="Stylesheet" href="../css/analysis.css" />
+    <script type="text/javascript">
+        function init() {
+            if (window.location.hash) {
+                var parentDiv, nodes, i, helpInfo, helpId, helpInfoArr, helpEnvFilter, envContent, hideEnvClass, hideNodes;
+                helpInfo = window.location.hash.substring(1);
+                    if(helpInfo.indexOf("-")) {
+                        helpInfoArr = helpInfo.split("-");
+                        helpId = helpInfoArr[0];
+                        helpEnvFilter = helpInfoArr[1];
+                    }
+                    else {
+                        helpId = helpInfo;
+                    }
+                parentDiv = document.getElementById("topics");
+                nodes = parentDiv.children;
+                    hideEnvClass = (helpEnvFilter === "OnlineOnly"? "PortalOnly": "OnlineOnly");
+                    if(document.getElementsByClassName) {
+                        hideNodes = document.getElementsByClassName(hideEnvClass);
+                    }
+                    else {
+                        hideNodes = document.querySelectorAll(hideEnvClass);
+                    }
+                for(i=0; i < nodes.length; i++) {
+                    if(nodes[i].id !== helpId) {
+                        nodes[i].style.display ="none";
+                    }
+                    }
+                    for(i=0; i < hideNodes.length; i++) {
+                        hideNodes[i].style.display ="none";
+                    }
+                }
+            }
+    </script>
+</head>
+<body onload="init()">
+<div id="topics">
+    <div id="toolDescription" class="largesize">
+        <h2>Resumir Atributos</h2><p/>
+        <h2><img src="../images/GUID-F64B533F-B0BB-4519-9F31-BCF814084999-web.png" alt="Resumir Atributos diagrama"></h2>
+        <hr/>
+    <p> Esta ferramenta resume valores num ou mais campos e calcula estat&iacute;sticas referentes aos mesmos. A estat&iacute;stica mais b&aacute;sica &eacute; a contagem de elementos que foram resumidos em conjunto, mas tamb&eacute;m pode calcular estat&iacute;sticas mais avan&ccedil;adas.
+    </p>
+    <p>Por exemplo, suponha que tem elementos de ponto de localiza&ccedil;&otilde;es de lojas com um campo que representa o  <i>DISTRICT_MANAGER_NAME</i>, e pretende resumir vendas de caf&eacute; por gerente. Pode especificar o campo <i>DISTRICT_MANAGER_NAME</i> como o campo no qual dissolver, e todas as linhas de dados que representam gerentes individuais ser&atilde;o resumidas. Isto significa que todas as localiza&ccedil;&otilde;es de lojas que s&atilde;o geridas pelo <pre>Manager1</pre> ser&atilde;o resumidas numa &uacute;nica linha, com estat&iacute;sticas resumidas calculadas. Nesta inst&acirc;ncia, estat&iacute;sticas como a contagem do n&uacute;mero de lojas e a soma de <i>TOTAL_SALES</i>  para todas as lojas que o <pre>Manager1</pre> gere ser&atilde;o calculadas, bem como para qualquer outro gerente listado no campo <i>DISTRICT_MANAGER_NAME</i> .
+    </p>
+    </div>
+    <!--Parameter divs for each param-->
+    <div id="inputLayer">
+        <div><h2>Escolher a entrada a resumir</h2></div>
+        <hr/>
+        <div>
+            <p>A camada que cont&eacute;m os campos que ser&atilde;o resumidos.  
+            </p>
+            <p>In addition to choosing a layer from your map, you can choose  <b>Browse Layers</b> at the bottom of the drop-down list to browse to your contents for a big data file share dataset or feature layer.
+            </p>
+        </div>
+    </div>
+    <div id="fields">
+        <div><h2>Selecionarcomo resumir os dados</h2></div>
+        <hr/>
+        <div>
+            <p>Existem duas formas de resumir os seus dados:
+                <ul>
+                    <li> <b>Todos os elementos num &uacute;nico elemento</b>&mdash;Calcula estat&iacute;sticas em todos os elementos.
+                    </li>
+                    <li> <b>Por campos</b>&mdash;Agrupa elementos por valores like em campos especificados.
+                    </li>
+                </ul>
+                
+            </p>
+            <p>Por exemplo, suponha que tem um conjunto de dados de &aacute;rvores que incluiu campos de  <i>treetype</i> com valores <code>&Aacute;cer</code>, <code>Abeto</code> e <code>Pinheiro</code>,  e um campo <i>treeheight</i>, e est&aacute; interessado em encontrar a <i>treeheight</i>m&eacute;dia. Se resumir todos os elementos num &uacute;nico elemento, encontrar&aacute; a altura m&eacute;dia de &aacute;rvores de todas as &aacute;rvores, que resultar&aacute; num valor m&eacute;dio. Se resumiu a partir do campo <i>treeheight</i>, ir&aacute; obter uma m&eacute;dia para &aacute;cer, uma m&eacute;dia para abetos, e uma m&eacute;dia para pinheiros.
+            </p>
+        </div>
+    </div>
+    <div id="summaryFields">
+        <div><h2>Adicionar estatísticas (opcional)</h2></div>
+        <hr/>
+        <div>
+            <p> You can calculate statistics on features that are summarized. You can calculate the following on numeric fields:
+                <ul>
+                    <li>Count&mdash;Calculates the number of nonnull values. It can be used on numeric fields or strings. The count of [null, 0, 2] is 2.
+                    </li>
+                    <li>Sum&mdash;The sum of numeric values in a field. The sum of [null, null, 3] is 3.
+                    </li>
+                    <li>Mean&mdash;The mean of numeric values. The mean of [0, 2, null] is 1.
+                    </li>
+                    <li>Min&mdash;The minimum value of a numeric field. The minimum of [0, 2, null] is 0. 
+                    </li>
+                    <li>Max&mdash;The maximum value of a numeric field. The maximum value of [0, 2, null] is 2.
+                    </li>
+                    <li>Range&mdash;The range of a numeric field. This is calculated as the minimum values subtracted from the maximum value. The range of [0, null, 1] is 1. The range of [null, 4] is 0.
+                    </li>
+                    <li>Variance&mdash;The variance of a numeric field in a track. The  variance of [1] is null. The variance of [null, 1,0,1,1] is 0.25.
+                    </li>
+                    <li>Standard deviation&mdash;The standard deviation of a numeric field. The standard deviation of [1] is null. The standard deviation of [null, 1,0,1,1] is 0.5. 
+                    </li>
+                </ul>
+                
+            </p>
+            <p>You can calculate the following on string fields:
+                <ul>
+                    <li>Count&mdash;The number of nonnull strings.
+                    </li>
+                    <li>Any&mdash;This statistic is a random sample of a string value in the specified field.
+                    </li>
+                </ul>
+                All statistics are calculated on nonnull values. The resulting layer will contain a new field for each statistic calculated. Any number of statistics can be added by choosing an attribute and statistic. 
+            </p>
+        </div>
+    </div>
+    <div id="dataStore">
+        <div><h2>Selecionar armazenamento de dados</h2></div>
+        <hr/>
+        <div>
+            <p>GeoAnalytics results are stored to an ArcGIS Data Store and exposed as a feature layer in   Portal for ArcGIS. In most cases, results should be stored to the spatiotemporal data store and this is the default. In some cases, saving results to the  relational data store is a good option. The following are reasons why you may want to store results to the relational data store: 
+                <ul>
+                    <li>You can use results in portal-to-portal collaboration.
+                    </li>
+                    <li>You can enable sync capabilities with your results.
+                    </li>
+                </ul>
+                
+            </p>
+        </div>
+    </div>
+    <div id="outputName">
+        <div><h2>Nome da camada resultante</h2></div>
+        <hr/>
+        <div>
+            <p> The name of the layer that will be created in <b>My
+Content</b> and added to the map. The default name is based on the
+tool name and the input layer name. If the layer already exists, the tool will fail.
+            </p>
+            <p>Using the  <b>Save result in</b> drop-down box, you can specify
+the name of a folder in <b>My Content</b> where the result will be
+saved.
+            </p>
+        </div>
+    </div>
+</div>
+</html>
