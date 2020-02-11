@@ -1,25 +1,21 @@
-// COPYRIGHT © 201 Esri
-//
-// All rights reserved under the copyright laws of the United States
-// and applicable international laws, treaties, and conventions.
-//
-// This material is licensed for use under the Esri Master License
-// Agreement (MLA), and is bound by the terms of that agreement.
-// You may redistribute and use this code without modification,
-// provided you adhere to the terms of the MLA and include this
-// copyright notice.
-//
-// See use restrictions at http://www.esri.com/legal/pdfs/mla_e204_e300/english
-//
-// For additional information, contact:
-// Environmental Systems Research Institute, Inc.
-// Attn: Contracts and Legal Services Department
-// 380 New York Street
-// Redlands, California, USA 92373
-// USA
-//
-// email: contracts@esri.com
-//
-// See http://js.arcgis.com/3.30/esri/copyright.txt for details.
+define(["dojo/_base/declare", 
+        "dojo/_base/lang", 
+        "dijit/_WidgetBase",
+        "dijit/_TemplatedMixin",
+        "dijit/_WidgetsInTemplateMixin",
+        "dojo/has", 
+        "esri/dijit/metadata/types/mpa/base/MpaDescriptor",  
+        "esri/dijit/metadata/form/Tabs",
+        "esri/dijit/metadata/types/iso/gmd/metadataEntity/MetadataIdentifier",
+        "esri/dijit/metadata/types/mpa/gmd/metadataEntity/MetadataContact",
+        "esri/dijit/metadata/types/mpa/gmd/metadataEntity/MetadataDate",
+        "esri/dijit/metadata/types/iso/gmd/metadataEntity/MetadataStandard",
+        "esri/dijit/metadata/types/mpa/gmd/metadataEntity/MetadataReference", 
+        "dojo/text!./templates/MetadataSection.html"],
+function (declare, lang, _WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin, has, Descriptor, Tabs, g, h, k, l, m, template) {
 
-define(["dojo/_base/declare","dojo/_base/lang","dojo/has","../../../../base/Descriptor","../../../../form/Tabs","../metadataEntity/MetadataIdentifier","../../../iso/gmd/metadataEntity/MetadataContact","../../../iso/gmd/metadataEntity/MetadataDate","../../../iso/gmd/metadataEntity/MetadataReference","../../../iso/gmd/metadataEntity/MetadataStandard","dojo/text!./templates/MetadataSection.html","../../../../../../kernel"],function(t,a,e,d,i,n,o,m,s,r,c,g){var y=t(d,{templateString:c});return e("extend-esri")&&a.setObject("dijit.metadata.types.gemini.gmd.metadataEntity.MetadataSection",y,g),y});
+    var oThisClass = declare([_WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin, Descriptor], {
+        templateString: template
+    });
+    return oThisClass
+});

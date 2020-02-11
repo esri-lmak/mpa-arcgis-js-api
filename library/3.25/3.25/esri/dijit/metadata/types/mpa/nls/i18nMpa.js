@@ -427,8 +427,8 @@ define({
             svy21: "SYV21",
             wgs84: "WGS84"
         },
-
-        validation: {
+		
+		validation: {
             pattern: "{label} - {message}",
             patternWithHint: "{label} - {message} {hint}",
             ok: "OK",
@@ -437,7 +437,7 @@ define({
             integer: "The value must be an integer.",
             number: "The value must be an number.",
             other: "Invalid value.",
-            url: "Invalid URL"
+			url: "Invalid URL"
         },
 
         language: {

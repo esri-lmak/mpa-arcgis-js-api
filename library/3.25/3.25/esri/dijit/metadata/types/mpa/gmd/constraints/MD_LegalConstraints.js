@@ -5,14 +5,14 @@ define(["dojo/_base/declare",
         "dijit/_WidgetsInTemplateMixin",
         "dojo/has", 
         "esri/dijit/metadata/types/mpa/base/MpaDescriptor", 
-        "esri/dijit/metadata/form/iso/AbstractObject", 
-        "esri/dijit/metadata/form/iso/ObjectReference", 
-        "esri/dijit/metadata/types/iso/gmd/extent/GeographicElement", 
-        "esri/dijit/metadata/types/iso/gmd/extent/TemporalElement", 
-        "dojo/text!./templates/ResourceExtent.html"],
+        "esri/dijit/metadata/form/Element",
+        "esri/dijit/metadata/form/iso/AbstractObject",
+        "esri/dijit/metadata/form/iso/CodeListReference",
+        "esri/dijit/metadata/form/iso/GcoElement",
+        "dojo/text!./templates/MD_LegalConstraints.html"],
 function (declare, lang, _WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin, has, Descriptor, g, h, k, l, template) {
-
-     var oThisClass = declare([_WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin, Descriptor], {
+    
+    var oThisClass = declare([_WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin, Descriptor], {
         templateString: template
     });
     return oThisClass
